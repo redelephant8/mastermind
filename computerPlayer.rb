@@ -18,5 +18,6 @@ class ComputerPlayer
 
     def generateGuess
         guessArray = [1 + rand(6), 1 + rand(6), 1 + rand(6), 1 + rand(6)]
+    end
         
 end

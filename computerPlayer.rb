@@ -19,8 +19,17 @@ class ComputerPlayer
   end
 
   def makeCode
-    puts "Enter a 4 digit code for the computer to crack: "
-    return gets.chomp.to_i
+    flag = false
+    while flag == false
+      puts "Enter a 4 digit code for the computer to crack: (1-6)"
+      code = gets.chomp
+      if code.match(/^[1-6]{4}$/)
+        flag = true
+      else
+        puts "Invalid response. Please try again:"
+      end
+    end
+    code.to_i
   end
 
   def gameLoop
@@ -28,7 +37,6 @@ class ComputerPlayer
     while @round < 12 && @win == false
       @computerGuess = generateGuess(@guessArray)
       removingDuplicates(@computerGuess)
-      print @incorrectPlacement
       @computerGuess = generateGuess(@guessArray)
       @guesses << @computerGuess
       @row = separateGuesses(@code)
@@ -152,7 +160,6 @@ class ComputerPlayer
 
       if @row.include?(@computerGuess[i]) == false && @falsePlacement.include?(@computerGuess[i]) == false
         @falsePlacement << (@computerGuess[i])
-        print @falsePlacement
       end
     end
   end
